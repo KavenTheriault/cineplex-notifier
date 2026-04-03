@@ -7,7 +7,7 @@ A TypeScript-based monitoring tool that automatically tracks new movie releases 
 - 📅 **Track New Bookable Movies** - Get notified when movies become available for booking
 - 🎬 **Monitor Movie Announcements** - Stay updated on newly announced releases
 - 🎟️ **Personal Watchlist** - Track specific movies you want to watch
-- 🎭 **Location-Based** - Automatically finds theatres near your postal code
+- 🎭 **Location-Based** - Automatically finds theatres near your location
 - 📧 **Email Notifications** - Receive formatted email alerts with all updates
 
 ## Prerequisites
