@@ -67,25 +67,11 @@ cd src
 npx tsx index.ts
 ```
 
-#### 6. Build the binary
-
-**For Linux:**
-```bash
-cd src
-bun build index.ts --compile --target=bun-linux-x64 --outfile cineplex-notifier
-```
-
-**For Windows:**
-```bash
-cd src
-bun build index.ts --compile --target=bun-windows-x64 --outfile cineplex-notifier.exe
-```
-
-## 6. Build standalone binary (optional)
+#### 6. Build standalone binary (optional)
 
 Compile to a single executable with no dependencies:
 
-### For Linux
+##### For Linux
 
 ```bash
 cd src
@@ -94,7 +80,7 @@ chmod +x cineplex-notifier
 ./cineplex-notifier
 ```
 
-### For Windows
+##### For Windows
 
 ```bash
 cd src
@@ -105,3 +91,38 @@ cineplex-notifier.exe
 **Note**: The binary still requires the `.env` file in the same directory.
 
 #### 7. Set up automated execution (cron, Task Scheduler, etc.)
+
+## Email example
+
+🎟️ TRACKED MOVIES NOW AVAILABLE:
+
+The Odyssey @ Beauport
+Dates: 2026-07-17, 2026-07-18, 2026-07-19
+
+📅 NEW BOOKABLE MOVIES:
+
+- Dune: Part Three (Release: 2026-12-18)
+- The Batman II (Release: 2027-10-03) [⚡ Early Access]
+- Taylor Swift | The Eras Tour (Release: 2026-10-13) [🎪 Event]
+
+🎬 NEW MOVIES ANNOUNCED:
+
+- Untitled Marvel Movie (Release: 2027-05-07)
+- National Theatre Live: Hamlet (Release: 2026-11-15) [🎪 Event]
+
+────────────────────────────────────────────────────────────
+
+⚙️ CURRENT CONFIGURATION
+
+📌 Tracked Movies (3):
+- The Odyssey (ID: 37617)
+- Avatar 3 (ID: 12345)
+- Dune: Part Three (ID: 67890)
+
+⚠️  Tracked Movie IDs Not Found (1):
+99999
+
+🎭 Nearby Theatres (4):
+- Beauport (9.6km)
+- Ste-Foy (12.3km)
+- Les Galeries de la Capitale (18.2km)
