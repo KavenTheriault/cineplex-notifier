@@ -4,7 +4,11 @@ import {scan} from "./scan";
 import {buildEmailFromScanResult} from "./email-template/from-scan-result";
 import {buildEmailFromError} from "./email-template/from-error";
 
+const EMAIL_THREAD_ID = 'cineplex-notifier';
+
 const main = async () => {
+  const startTime = new Date();
+  console.log(`🚀 [${startTime.toLocaleTimeString()}] Cineplex Notifier started`);
   const appConfig = loadAppConfig();
 
   try {
@@ -21,12 +25,18 @@ const main = async () => {
 
     const emailBody = buildEmailFromScanResult(scanResult);
     console.log('📧 Sending notification email...');
-    await sendEmail('🎬 Cineplex Notifier - Updates', emailBody, appConfig);
+    await sendEmail(appConfig, '🎬 Cineplex Notifier - Updates', emailBody, EMAIL_THREAD_ID);
   } catch (error: unknown) {
     const emailBody = buildEmailFromError(error);
     console.log('❌ Error', error);
-    console.log('❌ Sending error email...');
-    await sendEmail('❌ Cineplex Notifier - Error', emailBody, appConfig);
+    await sendEmail(appConfig, '❌ Cineplex Notifier - Error', emailBody);
+  } finally {
+    const endTime = new Date();
+    const durationMs = endTime.getTime() - startTime.getTime();
+
+    console.log(
+      `🏁 [${endTime.toLocaleTimeString()}] Cineplex Notifier finished (${durationMs} ms)`
+    );
   }
 }
 
