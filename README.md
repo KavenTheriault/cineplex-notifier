@@ -58,6 +58,9 @@ LONGITUDE=-73.55248
 
 # Movie tracking (comma-separated movie IDs)
 TRACKED_MOVIE_IDS=1234,1235,1246
+
+# Terms tracking (comma-separated terms)
+TRACKED_TERMS=Dune,IMAX,Avengers
 ```
 
 #### 5. Run the script

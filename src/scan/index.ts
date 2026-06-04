@@ -20,6 +20,7 @@ interface NotifiedDate {
 export const scan = async (appConfig: AppConfig): Promise<ScanResult> => {
   const {movies: bookableMovies, newMovies: newBookableMovies} = await detectNewMovies(
     BOOKABLE_MOVIES_FILE,
+    appConfig.trackedTerms,
     () => cineplexApiCall<Movie[]>('movies/bookable?language=en', appConfig)
   );
   if (newBookableMovies.length > 0) {
@@ -30,6 +31,7 @@ export const scan = async (appConfig: AppConfig): Promise<ScanResult> => {
 
   const {movies: movies, newMovies: newMovies} = await detectNewMovies(
     MOVIES_FILE,
+    appConfig.trackedTerms,
     async () => {
       const result = await cineplexApiCall<ListResult<Movie>>('movies?language=en', appConfig);
       return result.items;
@@ -64,7 +66,11 @@ export const scan = async (appConfig: AppConfig): Promise<ScanResult> => {
   }
 }
 
-const detectNewMovies = async (fileName: string, getMovies: () => Promise<Movie[]>): Promise<{
+const detectNewMovies = async (
+  fileName: string,
+  trackedTerms: string[],
+  getMovies: () => Promise<Movie[]>
+): Promise<{
   movies: Movie[],
   newMovies: Movie[]
 }> => {
@@ -80,7 +86,11 @@ const detectNewMovies = async (fileName: string, getMovies: () => Promise<Movie[
   }
 
   const savedMoviesById = keyBy(savedMovies, 'id');
-  return {movies, newMovies: movies.filter(movie => !savedMoviesById[movie.id])};
+  const newMovies = movies
+    .filter(movie => !savedMoviesById[movie.id])
+    .filter(movie => trackedTerms.some(term => movie.name.toLowerCase().includes(term.toLowerCase())));
+
+  return {movies, newMovies};
 }
 
 const findNearbyTheatres = async (appConfig: AppConfig): Promise<Theatre[]> => {

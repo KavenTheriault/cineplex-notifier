@@ -8,6 +8,7 @@ export interface AppConfig {
   latitude: string;
   longitude: string;
   trackedMovieIds: number[];
+  trackedTerms: string[];
 }
 
 export const loadAppConfig = (): AppConfig => {
@@ -21,5 +22,6 @@ export const loadAppConfig = (): AppConfig => {
     latitude: process.env.LATITUDE!,
     longitude: process.env.LONGITUDE!,
     trackedMovieIds: process.env.TRACKED_MOVIE_IDS!.split(',').map(id => Number(id.trim())),
+    trackedTerms: process.env.TRACKED_TERMS!.split(',').map(term => term.trim()),
   }
 }
