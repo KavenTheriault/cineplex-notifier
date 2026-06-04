@@ -1,7 +1,7 @@
 import {ScanResult} from "../scan/types";
 import {Movie} from "../cineplex/types";
 
-export const buildEmailFromScanResult = (scanResult: ScanResult): string => {
+export const buildEmailFromScanResult = (scanResult: ScanResult, trackedTerms: string[]): string => {
   const {
     newMovies,
     newBookableMovies,
@@ -41,6 +41,11 @@ export const buildEmailFromScanResult = (scanResult: ScanResult): string => {
   emailBody += `📌 Tracked Movies (${trackedMovies.length}):\n`;
   trackedMovies.forEach(movie => {
     emailBody += `   - ${movie.name} (ID: ${movie.id})\n`;
+  });
+
+  emailBody += `🔍 Tracked Terms (${trackedTerms.length}):\n`;
+  trackedTerms.forEach(term => {
+    emailBody += `   - ${term}\n`;
   });
 
   if (trackedMovieIdsNotFound.length > 0) {

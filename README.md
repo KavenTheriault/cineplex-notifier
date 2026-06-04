@@ -122,6 +122,11 @@ Dates: 2026-07-17, 2026-07-18, 2026-07-19
 - Avatar 3 (ID: 12345)
 - Dune: Part Three (ID: 67890)
 
+🔍 Tracked Terms (3):
+- Dune
+- IMAX
+- Avengers
+
 ⚠️  Tracked Movie IDs Not Found (1):
 99999
 

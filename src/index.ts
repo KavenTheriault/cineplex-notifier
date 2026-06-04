@@ -23,7 +23,7 @@ const main = async () => {
       return;
     }
 
-    const emailBody = buildEmailFromScanResult(scanResult);
+    const emailBody = buildEmailFromScanResult(scanResult, appConfig.trackedTerms);
     console.log('📧 Sending notification email...');
     await sendEmail(appConfig, '🎬 Cineplex Notifier - Updates', emailBody, EMAIL_THREAD_ID);
   } catch (error: unknown) {
